@@ -6,6 +6,7 @@ import uuid from 'react-uuid'
 import { Answer } from '#/Answer'
 import { Score } from '#/Score'
 import { Question } from '#/Question'
+import { Status } from '#/Status'
 
 //Data
 import { quizzData } from '../../data/quizz-data'
@@ -78,15 +79,7 @@ export const Quizz = () => {
           </button>
         )}
         <Score score={score} maxScore={quizzData.length} />
-        {status === 'notSet' ? null : status === 'win' ? (
-          <span className='bg-green-400 p-2 rounded-md border-2 border-green-500 text-white'>
-            Bonne réponse !
-          </span>
-        ) : (
-          <span className='bg-red-400 p-2 rounded-md border-2 border-red-500 text-white'>
-            Mauvaise réponse...
-          </span>
-        )}
+        <Status status={status} />
       </div>
     </div>
   )
