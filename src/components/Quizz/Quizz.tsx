@@ -5,6 +5,7 @@ import uuid from 'react-uuid'
 //Components
 import { Answer } from '#/Answer'
 import { Score } from '#/Score'
+import { Question } from '#/Question'
 
 //Data
 import { quizzData } from '../../data/quizz-data'
@@ -42,9 +43,7 @@ export const Quizz = () => {
   return (
     <div className='w-2/3 bg-zinc-300 rounded-md flex justify-between items-start flex-col p-6'>
       <div className='mb-4'>
-        <h4 className='text-xl mb-2 font-semibold'>
-          {quizzData[currentPage].question}
-        </h4>
+        <Question question={quizzData[currentPage].question} />
         <span className='text-md text-gray-500'>
           Choisis une réponse parmis les 4 ci-dessous.
         </span>
