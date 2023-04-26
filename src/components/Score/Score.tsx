@@ -4,11 +4,12 @@ import { FC } from 'react'
 type ScoreProps = {
   score: number
   maxScore: number
+  style?: string
 }
 
-export const Score: FC<ScoreProps> = ({ score, maxScore }) => {
+export const Score: FC<ScoreProps> = ({ score, maxScore, style }) => {
   return (
-    <span>
+    <span className={style}>
       {score} / {maxScore}
     </span>
   )
