@@ -8,6 +8,7 @@ import { Score } from '#/Score'
 import { Question } from '#/Question'
 import { Status } from '#/Status'
 import { Button } from '#/Button'
+import { ScoreBoard } from '#/ScoreBoard'
 
 //Data
 import { quizzData } from '../../data/quizz-data'
@@ -25,6 +26,7 @@ export const Quizz = () => {
   const setStatus = useStatusStore((state) => state.setStatus)
   const status = useStatusStore((state) => state.status)
   const [score, setScore] = useState<number>(0)
+  const [scoreBoardVisible, setScoreBoardVisible] = useState<boolean>(false)
 
   const getRightAnswer = (currentPage: number) => {
     return quizzData[currentPage].answers.filter(
@@ -35,6 +37,10 @@ export const Quizz = () => {
   const goToNextPage = () => {
     nextPage()
     setStatus('notSet')
+  }
+
+  const closeScoreBoard = () => {
+    setScoreBoardVisible(false)
   }
 
   const resetQuizz = () => {
@@ -54,62 +60,75 @@ export const Quizz = () => {
   }
 
   return (
-    <div className='w-2/3 bg-zinc-300 rounded-md flex justify-between items-start flex-col p-6'>
-      {currentPage !== quizzData.length ? (
-        <>
-          <div className='mb-4'>
-            <Question question={quizzData[currentPage].question} />
-            <span className='text-md text-gray-500'>
-              Choisis une réponse parmis les 4 ci-dessous.
-            </span>
-          </div>
-          <div className='w-full grid grid-cols-2 grid-rows-2 gap-2 mb-4'>
-            {quizzData[currentPage].answers.map(({ answer }) => {
-              return (
-                <Answer
-                  rightAnswer={getRightAnswer(currentPage)}
-                  answer={answer}
-                  key={uuid()}
-                />
-              )
-            })}
-          </div>
-          <div className='flex items-center gap-10'>
-            <Button
-              status={status}
-              goToNextPage={goToNextPage}
-              getRightAnswer={getRightAnswer}
-              verifyAnswer={verifyAnswer}
-              setStatus={setStatus}
-              currentPage={currentPage}
-            />
-            <Score score={score} maxScore={quizzData.length} />
-            <Status status={status} />
-          </div>
-        </>
-      ) : (
-        <>
-          <div className='flex flex-col items-start justify-center gap-4'>
-            <span className='text-md font-semibold'>Le quizz est finis.</span>
-            <div className='mb-6'>
-              <span className='text-md font-semibold'>
-                Voici votre score est de :
+    <>
+      <div className=' bg-zinc-300 rounded-md flex justify-between items-start flex-col p-6 relative'>
+        {currentPage !== quizzData.length ? (
+          <>
+            <div className='mb-4'>
+              <Question question={quizzData[currentPage].question} />
+              <span className='text-md text-gray-500'>
+                Choisis une réponse parmis les 4 ci-dessous.
               </span>
-              <Score
-                score={score}
-                maxScore={quizzData.length}
-                style='py-3 px-4 rounded-md bg-zinc-400 ml-4 border-2 text-white'
-              />
             </div>
-            <button
-              onClick={resetQuizz}
-              className='py-3 px-4 bg-blue-300 rounded-md flex items-center justify-center gap-2 hover:bg-blue-400 transition ease-linear'
-            >
-              RELANCER LE QUIZZ
-            </button>
-          </div>
-        </>
-      )}
-    </div>
+            <div className='w-full grid grid-cols-2 grid-rows-2 gap-2 mb-4'>
+              {quizzData[currentPage].answers.map(({ answer }) => {
+                return (
+                  <Answer
+                    rightAnswer={getRightAnswer(currentPage)}
+                    answer={answer}
+                    key={uuid()}
+                  />
+                )
+              })}
+            </div>
+            <div className='flex items-center gap-10'>
+              <Button
+                status={status}
+                goToNextPage={goToNextPage}
+                getRightAnswer={getRightAnswer}
+                verifyAnswer={verifyAnswer}
+                setStatus={setStatus}
+                currentPage={currentPage}
+              />
+              <Score score={score} maxScore={quizzData.length} />
+              <Status status={status} />
+            </div>
+          </>
+        ) : (
+          <>
+            <div className='flex flex-col items-start justify-center gap-4'>
+              <span className='text-md font-semibold'>Le quizz est finis.</span>
+              <div className='mb-6'>
+                <span className='text-md font-semibold'>
+                  Voici votre score est de :
+                </span>
+                <Score
+                  score={score}
+                  maxScore={quizzData.length}
+                  style='py-3 px-4 rounded-md bg-zinc-400 ml-4 border-2 text-white'
+                />
+              </div>
+              <div className='flex gap-4'>
+                <button
+                  onClick={resetQuizz}
+                  className='py-3 px-4 bg-blue-300 rounded-md flex items-center justify-center gap-2 hover:bg-blue-400 transition ease-linear'
+                >
+                  RELANCER LE QUIZZ
+                </button>
+                <button
+                  onClick={() => {
+                    setScoreBoardVisible(true)
+                  }}
+                  className='py-3 px-4 bg-blue-300 rounded-md flex items-center justify-center gap-2 hover:bg-blue-400 transition ease-linear'
+                >
+                  VOIR LE SCOREBOARD
+                </button>
+              </div>
+            </div>
+          </>
+        )}
+      </div>
+      {scoreBoardVisible && <ScoreBoard close={closeScoreBoard} />}
+    </>
   )
 }
