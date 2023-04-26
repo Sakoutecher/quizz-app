@@ -16,10 +16,8 @@ export const useAnswerStore = create<AnswserStore>((set) => ({
   verifyAnswer: (trueAnswer, setStatus) => {
     const { answer } = useAnswerStore.getState()
     if (answer === trueAnswer) {
-      console.log('Bonne réponse')
       setStatus('win')
     } else {
-      console.log('Mauvais réponse')
       setStatus('loose')
     }
   },
