@@ -1,4 +1,5 @@
 //Librairies
+import { useEffect, useState } from 'react'
 import uuid from 'react-uuid'
 
 //Components
@@ -18,6 +19,7 @@ export const Quizz = () => {
   const verifyAnswer = useAnswerStore((state) => state.verifyAnswer)
   const setStatus = useStatusStore((state) => state.setStatus)
   const status = useStatusStore((state) => state.status)
+  const [score, setScore] = useState<number>(0)
 
   const getRightAnswer = (currentPage: number) => {
     return quizzData[currentPage].answers.filter(
@@ -29,6 +31,12 @@ export const Quizz = () => {
     nextPage()
     setStatus('notSet')
   }
+
+  useEffect(() => {
+    if (status === 'win') {
+      setScore(score + 1)
+    }
+  }, [status])
 
   return (
     <div className='w-2/3 bg-zinc-300 rounded-md flex justify-between items-start flex-col p-6'>
@@ -63,7 +71,9 @@ export const Quizz = () => {
             SUIVANT
           </button>
         )}
-
+        <span>
+          {score} / {quizzData.length}
+        </span>
         {status === 'notSet' ? null : status === 'win' ? (
           <span className='bg-green-400 p-2 rounded-md border-2 border-green-500 text-white'>
             Bonne réponse !
