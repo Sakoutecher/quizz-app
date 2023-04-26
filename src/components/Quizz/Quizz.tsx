@@ -50,7 +50,13 @@ export const Quizz = () => {
       </div>
       <div className='w-full grid grid-cols-2 grid-rows-2 gap-2 mb-4'>
         {quizzData[currentPage].answers.map(({ answer }) => {
-          return <Answer answer={answer} key={uuid()} />
+          return (
+            <Answer
+              rightAnswer={getRightAnswer(currentPage)}
+              answer={answer}
+              key={uuid()}
+            />
+          )
         })}
       </div>
       <div className='flex items-center gap-10'>
