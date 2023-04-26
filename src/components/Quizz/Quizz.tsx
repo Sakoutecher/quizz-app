@@ -98,7 +98,7 @@ export const Quizz = () => {
               <Score
                 score={score}
                 maxScore={quizzData.length}
-                style='py-3 px-4 rounded-md bg-zinc-400 ml-4'
+                style='py-3 px-4 rounded-md bg-zinc-400 ml-4 border-2 text-white'
               />
             </div>
             <button
