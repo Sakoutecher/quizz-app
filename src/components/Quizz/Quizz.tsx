@@ -10,16 +10,24 @@ import { quizzData } from '../../data/quizz-data'
 //Store
 import { usePaginationStore } from '../../hooks/usePagination'
 import { useAnswerStore } from '../../hooks/useAnswer/useAnswer'
+import { useStatusStore } from '../../hooks/useStatus'
 
 export const Quizz = () => {
   const currentPage = usePaginationStore((state) => state.currentPage)
   const nextPage = usePaginationStore((state) => state.nextPage)
   const verifyAnswer = useAnswerStore((state) => state.verifyAnswer)
+  const setStatus = useStatusStore((state) => state.setStatus)
+  const status = useStatusStore((state) => state.status)
 
   const getRightAnswer = (currentPage: number) => {
     return quizzData[currentPage].answers.filter(
       (answers) => answers.response === true
     )[0].answer
+  }
+
+  const goToNextPage = () => {
+    nextPage()
+    setStatus('notSet')
   }
 
   return (
@@ -37,14 +45,35 @@ export const Quizz = () => {
           return <Answer answer={answer} key={uuid()} />
         })}
       </div>
-      <button
-        onClick={() => {
-          verifyAnswer(getRightAnswer(currentPage), nextPage)
-        }}
-        className='py-3 px-4 bg-blue-300 rounded-md flex items-center justify-center gap-2 hover:bg-blue-400 transition ease-linear'
-      >
-        VALIDER
-      </button>
+      <div className='flex items-center gap-10'>
+        {status === 'notSet' ? (
+          <button
+            onClick={() => {
+              verifyAnswer(getRightAnswer(currentPage), setStatus)
+            }}
+            className='py-3 px-4 bg-blue-300 rounded-md flex items-center justify-center gap-2 hover:bg-blue-400 transition ease-linear'
+          >
+            VALIDER
+          </button>
+        ) : (
+          <button
+            onClick={goToNextPage}
+            className='py-3 px-4 bg-blue-300 rounded-md flex items-center justify-center gap-2 hover:bg-blue-400 transition ease-linear'
+          >
+            SUIVANT
+          </button>
+        )}
+
+        {status === 'notSet' ? null : status === 'win' ? (
+          <span className='bg-green-400 p-2 rounded-md border-2 border-green-500 text-white'>
+            Bonne réponse !
+          </span>
+        ) : (
+          <span className='bg-red-400 p-2 rounded-md border-2 border-red-500 text-white'>
+            Mauvaise réponse...
+          </span>
+        )}
+      </div>
     </div>
   )
 }
