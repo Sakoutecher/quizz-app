@@ -7,6 +7,7 @@ import { Answer } from '#/Answer'
 import { Score } from '#/Score'
 import { Question } from '#/Question'
 import { Status } from '#/Status'
+import { Button } from '#/Button'
 
 //Data
 import { quizzData } from '../../data/quizz-data'
@@ -61,23 +62,14 @@ export const Quizz = () => {
         })}
       </div>
       <div className='flex items-center gap-10'>
-        {status === 'notSet' ? (
-          <button
-            onClick={() => {
-              verifyAnswer(getRightAnswer(currentPage), setStatus)
-            }}
-            className='py-3 px-4 bg-blue-300 rounded-md flex items-center justify-center gap-2 hover:bg-blue-400 transition ease-linear'
-          >
-            VALIDER
-          </button>
-        ) : (
-          <button
-            onClick={goToNextPage}
-            className='py-3 px-4 bg-blue-300 rounded-md flex items-center justify-center gap-2 hover:bg-blue-400 transition ease-linear'
-          >
-            SUIVANT
-          </button>
-        )}
+        <Button
+          status={status}
+          goToNextPage={goToNextPage}
+          getRightAnswer={getRightAnswer}
+          verifyAnswer={verifyAnswer}
+          setStatus={setStatus}
+          currentPage={currentPage}
+        />
         <Score score={score} maxScore={quizzData.length} />
         <Status status={status} />
       </div>
