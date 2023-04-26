@@ -4,6 +4,7 @@ import uuid from 'react-uuid'
 
 //Components
 import { Answer } from '#/Answer'
+import { Score } from '#/Score'
 
 //Data
 import { quizzData } from '../../data/quizz-data'
@@ -77,9 +78,7 @@ export const Quizz = () => {
             SUIVANT
           </button>
         )}
-        <span>
-          {score} / {quizzData.length}
-        </span>
+        <Score score={score} maxScore={quizzData.length} />
         {status === 'notSet' ? null : status === 'win' ? (
           <span className='bg-green-400 p-2 rounded-md border-2 border-green-500 text-white'>
             Bonne réponse !
