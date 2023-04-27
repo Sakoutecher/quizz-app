@@ -109,9 +109,11 @@ export const Quizz = () => {
         ) : (
           <>
             <div className='flex flex-col items-start justify-center gap-4'>
-              <span className='text-md font-semibold'>Le quizz est finis.</span>
+              <span className='text-sm font-semibold lg:text-md'>
+                Le quizz est finis.
+              </span>
               <div>
-                <span className='text-md font-semibold'>
+                <span className='text-sm font-semibold lg:text-md'>
                   Voici votre score est de :
                 </span>
                 <Score
@@ -120,16 +122,18 @@ export const Quizz = () => {
                   style='py-2 px-4 rounded-md bg-zinc-400 ml-4 border-2 text-white'
                 />
               </div>
-              <div className='mb-4 flex items-center'>
-                <span className='text-md font-semibold'>Votre prénom :</span>
+              <div className='mb-4 flex items-center flex-wrap'>
+                <span className='text-sm font-semibold lg:text-md'>
+                  Votre prénom :
+                </span>
                 <input
                   type='text'
-                  className='py-2 px-4 rounded-md bg-zinc-400 ml-4 border-2 text-white mr-4'
+                  className='py-2 px-4 w-44 rounded-md bg-zinc-400 ml-4 border-2 text-white mr-4 lg:w-fit'
                   ref={inputRef}
                 />
                 <button
                   onClick={addToScoreBoard}
-                  className='py-2 px-4 bg-blue-300 rounded-md flex items-center justify-center gap-2 hover:bg-blue-400 transition ease-linear'
+                  className='py-2 px-4 bg-blue-300 mt-4 rounded-md flex items-center justify-center gap-2 hover:bg-blue-400 transition ease-linear lg:mt-0'
                 >
                   AJOUTER MON SCORE
                 </button>
@@ -139,10 +143,10 @@ export const Quizz = () => {
                   Merci de bien vouloir saisir votre prénom.
                 </span>
               )}
-              <div className='flex gap-4'>
+              <div className='flex gap-2 lg:gap-4'>
                 <button
                   onClick={resetQuizz}
-                  className='py-3 px-4 bg-blue-300 rounded-md flex items-center justify-center gap-2 hover:bg-blue-400 transition ease-linear'
+                  className='py-3 px-2 bg-blue-300 rounded-md text-sm flex items-center justify-center gap-2 hover:bg-blue-400 transition ease-linear lg:px-4 lg:text-base'
                 >
                   RELANCER LE QUIZZ
                 </button>
@@ -150,7 +154,7 @@ export const Quizz = () => {
                   onClick={() => {
                     setScoreBoardVisible(true)
                   }}
-                  className='py-3 px-4 bg-blue-300 rounded-md flex items-center justify-center gap-2 hover:bg-blue-400 transition ease-linear'
+                  className='py-3 px-2 bg-blue-300 rounded-md text-sm flex items-center justify-center gap-2 hover:bg-blue-400 transition ease-linear lg:px-4 lg:text-base'
                 >
                   VOIR LE SCOREBOARD
                 </button>
