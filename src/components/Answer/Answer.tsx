@@ -1,5 +1,6 @@
 //Librairies
 import { FC, useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
 
 //Store
 import { useAnswerStore } from '../../hooks/useAnswer/useAnswer'
@@ -8,9 +9,10 @@ import { useStatusStore } from '../../hooks/useStatus'
 type AnswerProps = {
   answer: string
   rightAnswer: string
+  side: number
 }
 
-export const Answer: FC<AnswerProps> = ({ answer, rightAnswer }) => {
+export const Answer: FC<AnswerProps> = ({ answer, rightAnswer, side }) => {
   const setAnswer = useAnswerStore((state) => state.setAnswer)
   const selectedAnswer = useAnswerStore((state) => state.answer)
   const status = useStatusStore((state) => state.status)
@@ -38,7 +40,29 @@ export const Answer: FC<AnswerProps> = ({ answer, rightAnswer }) => {
   }, [status])
 
   return (
-    <div className={styleContainer}>
+    <motion.div
+      className={styleContainer}
+      initial={{
+        transform:
+          side === 0
+            ? 'translateX(-20px)'
+            : side === 2
+            ? 'translateX(-20px)'
+            : 'translateX(20px)',
+        opacity: 0,
+      }}
+      animate={{ transform: 'translateX(0px)', opacity: 1 }}
+      exit={{
+        transform:
+          side === 0
+            ? 'translateX(-20px)'
+            : side === 2
+            ? 'translateX(-20px)'
+            : 'translateX(20px)',
+        opacity: 0,
+      }}
+      transition={{ duration: 0.5 }}
+    >
       <input
         type='checkbox'
         id={answer}
@@ -56,6 +80,6 @@ export const Answer: FC<AnswerProps> = ({ answer, rightAnswer }) => {
           </div>
         </div>
       </label>
-    </div>
+    </motion.div>
   )
 }
