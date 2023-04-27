@@ -56,10 +56,12 @@ export const Quizz = () => {
         setShowError(true)
         return
       } else {
+        setShowError(false)
         localStorage.setItem(
           inputRef.current.value,
           `${score.toString()} / ${quizzData.length}`
         )
+        inputRef.current.value === ''
       }
     }
   }
