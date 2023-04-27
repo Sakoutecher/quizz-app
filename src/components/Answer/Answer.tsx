@@ -12,6 +12,7 @@ type AnswerProps = {
 
 export const Answer: FC<AnswerProps> = ({ answer, rightAnswer }) => {
   const setAnswer = useAnswerStore((state) => state.setAnswer)
+  const selectedAnswer = useAnswerStore((state) => state.answer)
   const status = useStatusStore((state) => state.status)
   const [styleInput, setStyleInput] = useState<string>(
     'inline-flex items-center justify-between rounded-md w-full h-full border-2 text-white peer-checked:border-blue-400 cursor-pointer peer-checked:text-blue-400'
@@ -43,6 +44,7 @@ export const Answer: FC<AnswerProps> = ({ answer, rightAnswer }) => {
         id={answer}
         disabled={status !== 'notSet' ? true : false}
         className='hidden peer'
+        checked={selectedAnswer === answer ? true : false}
         onChange={() => {
           setAnswer(answer)
         }}
