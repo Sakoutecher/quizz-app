@@ -1,5 +1,6 @@
 //Librairies
 import { ReactElement } from 'react'
+import { AnimatePresence } from 'framer-motion'
 
 //Components
 import { Quizz } from '#/Quizz'
@@ -11,7 +12,9 @@ const App = (): ReactElement => {
   return (
     <div className='w-full h-screen flex justify-center items-center flex-col bg-zinc-200 font-jetbrains relative overflow-hidden'>
       <h1 className='mb-8 text-3xl underline'>QUIZZ APP</h1>
-      <Quizz />
+      <AnimatePresence mode='wait'>
+        <Quizz />
+      </AnimatePresence>
       <span className='text-md absolute top-5 left-6 flex items-center justify-center gap-3 lg:top-5 lg:left-6'>
         Star the project on{' '}
         <a
