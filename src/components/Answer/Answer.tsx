@@ -51,7 +51,9 @@ export const Answer: FC<AnswerProps> = ({ answer, rightAnswer }) => {
       />
       <label htmlFor={answer} className={styleInput}>
         <div className='block'>
-          <div className='w-full text-lg font-semibold px-4'>{answer}</div>
+          <div className='w-full text-sm lg:text-lg font-semibold px-4'>
+            {answer}
+          </div>
         </div>
       </label>
     </div>
