@@ -1,5 +1,5 @@
 //Librairies
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import uuid from 'react-uuid'
 
 //Components
@@ -27,6 +27,8 @@ export const Quizz = () => {
   const status = useStatusStore((state) => state.status)
   const [score, setScore] = useState<number>(0)
   const [scoreBoardVisible, setScoreBoardVisible] = useState<boolean>(false)
+  const inputRef = useRef<HTMLInputElement>(null)
+  const [showError, setShowError] = useState<boolean>(false)
 
   const getRightAnswer = (currentPage: number) => {
     return quizzData[currentPage].answers.filter(
@@ -44,6 +46,17 @@ export const Quizz = () => {
   }
 
   const resetQuizz = () => {
+    if (inputRef.current) {
+      if (inputRef.current.value === '') {
+        setShowError(true)
+        return
+      } else {
+        localStorage.setItem(
+          inputRef.current.value,
+          `${score.toString()} / ${quizzData.length}`
+        )
+      }
+    }
     resetPage()
     setStatus('notSet')
     setScore(0)
@@ -54,10 +67,6 @@ export const Quizz = () => {
       setScore(score + 1)
     }
   }, [status])
-
-  if (currentPage === quizzData.length) {
-    console.log('fini')
-  }
 
   return (
     <>
@@ -98,7 +107,7 @@ export const Quizz = () => {
           <>
             <div className='flex flex-col items-start justify-center gap-4'>
               <span className='text-md font-semibold'>Le quizz est finis.</span>
-              <div className='mb-6'>
+              <div>
                 <span className='text-md font-semibold'>
                   Voici votre score est de :
                 </span>
@@ -108,6 +117,19 @@ export const Quizz = () => {
                   style='py-2 px-4 rounded-md bg-zinc-400 ml-4 border-2 text-white'
                 />
               </div>
+              <div className='mb-4'>
+                <span className='text-md font-semibold'>Votre prénom :</span>
+                <input
+                  type='text'
+                  className='py-2 px-4 rounded-md bg-zinc-400 ml-4 border-2 text-white'
+                  ref={inputRef}
+                />
+              </div>
+              {showError && (
+                <span className='mb-4 text-red-500'>
+                  Merci de bien vouloir saisir votre prénom.
+                </span>
+              )}
               <div className='flex gap-4'>
                 <button
                   onClick={resetQuizz}
