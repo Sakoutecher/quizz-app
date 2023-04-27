@@ -46,6 +46,12 @@ export const Quizz = () => {
   }
 
   const resetQuizz = () => {
+    resetPage()
+    setStatus('notSet')
+    setScore(0)
+  }
+
+  const addToScoreBoard = () => {
     if (inputRef.current) {
       if (inputRef.current.value === '') {
         setShowError(true)
@@ -57,9 +63,6 @@ export const Quizz = () => {
         )
       }
     }
-    resetPage()
-    setStatus('notSet')
-    setScore(0)
   }
 
   useEffect(() => {
@@ -117,13 +120,19 @@ export const Quizz = () => {
                   style='py-2 px-4 rounded-md bg-zinc-400 ml-4 border-2 text-white'
                 />
               </div>
-              <div className='mb-4'>
+              <div className='mb-4 flex items-center'>
                 <span className='text-md font-semibold'>Votre prénom :</span>
                 <input
                   type='text'
-                  className='py-2 px-4 rounded-md bg-zinc-400 ml-4 border-2 text-white'
+                  className='py-2 px-4 rounded-md bg-zinc-400 ml-4 border-2 text-white mr-4'
                   ref={inputRef}
                 />
+                <button
+                  onClick={addToScoreBoard}
+                  className='py-2 px-4 bg-blue-300 rounded-md flex items-center justify-center gap-2 hover:bg-blue-400 transition ease-linear'
+                >
+                  AJOUTER MON SCORE
+                </button>
               </div>
               {showError && (
                 <span className='mb-4 text-red-500'>
