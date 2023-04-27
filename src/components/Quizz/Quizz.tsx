@@ -1,6 +1,5 @@
 //Librairies
 import { useEffect, useState, useRef } from 'react'
-import uuid from 'react-uuid'
 
 //Components
 import { Answer } from '#/Answer'
@@ -73,22 +72,26 @@ export const Quizz = () => {
 
   return (
     <>
-      <div className=' bg-zinc-300 rounded-md flex justify-between items-start flex-col p-6 relative w-11/12 lg:w-2/3 '>
+      <div className=' bg-zinc-300 rounded-md flex justify-between items-start flex-col p-6 relative w-11/12 lg:w-2/3'>
         {currentPage !== quizzData.length ? (
           <>
             <div className='mb-4'>
-              <Question question={quizzData[currentPage].question} />
+              <Question
+                question={quizzData[currentPage].question}
+                key={quizzData[currentPage].question}
+              />
               <span className='text-md text-gray-500'>
                 Choisis une réponse parmis les 4 ci-dessous.
               </span>
             </div>
             <div className='w-full grid grid-cols-2 grid-rows-2 gap-2 mb-4'>
-              {quizzData[currentPage].answers.map(({ answer }) => {
+              {quizzData[currentPage].answers.map((answer, index) => {
                 return (
                   <Answer
                     rightAnswer={getRightAnswer(currentPage)}
-                    answer={answer}
-                    key={uuid()}
+                    answer={answer.answer}
+                    key={answer.answer}
+                    side={index}
                   />
                 )
               })}
