@@ -9,26 +9,26 @@ type ScoreBoardProps = {
   close: () => void
 }
 
-interface Data {
+interface Scores {
   name: string
   score: string
 }
 
 export const ScoreBoard: FC<ScoreBoardProps> = ({ close }) => {
-  const [data, setData] = useState<Data[]>([])
+  const [scores, setScores] = useState<Scores[]>([])
 
   useEffect(() => {
     const keys = Object.keys(localStorage)
-    const allData: Data[] = keys.map((key) => {
+    const allScores: Scores[] = keys.map((key) => {
       const value = localStorage.getItem(key)
       return { name: key, score: value as string }
     })
-    setData(allData)
+    setScores(allScores)
   }, [])
 
   const removeScore = (name: string) => {
-    const filteredData = data.filter((item) => item.name !== name)
-    setData(filteredData)
+    const filteredData = scores.filter((item) => item.name !== name)
+    setScores(filteredData)
     localStorage.removeItem(name)
   }
 
@@ -46,7 +46,7 @@ export const ScoreBoard: FC<ScoreBoardProps> = ({ close }) => {
           <div className='w-full h-0.5 bg-black'></div>
         </div>
         <div className='w-full flex flex-col items-start justify-center gap-2'>
-          {data.map((score) => {
+          {scores.map((score) => {
             return (
               <div
                 key={uuid()}
