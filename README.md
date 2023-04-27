@@ -16,7 +16,7 @@ This is a quizz app, you can change all the questions and the answers, just look
 
 ## Technology Stack
 
-[![Technology Stack](https://github-readme-tech-stack.vercel.app/api/cards?lineCount=2&hideTitle=true&line1=react,react,926cbc;styledcomponents,styledcomponents,f6df4c;framer,framer,8e290a;&line2=typescript,typescript,c1e609;vite,vite,1c89d2;vitest,vitest,adc5c5;jest,jest,43eb8c;)](https://github-readme-tech-stack.vercel.app/api/cards?lineCount=2&hideTitle=true&line1=react,react,926cbc;styledcomponents,styledcomponents,f6df4c;framer,framer,8e290a;&line2=typescript,typescript,c1e609;vite,vite,1c89d2;vitest,vitest,adc5c5;jest,jest,43eb8c;)
+[![Technology Stack](https://github-readme-tech-stack.vercel.app/api/cards?lineCount=2&hideTitle=true&line1=react,react,926cbc;tailwindcss,tailwindcss,2b971b;framer,framer,8e290a;&line2=typescript,typescript,c1e609;vite,vite,1c89d2;)](https://github-readme-tech-stack.vercel.app/api/cards?lineCount=2&hideTitle=true&line1=react,react,926cbc;tailwindcss,tailwindcss,2b971b;framer,framer,8e290a;&line2=typescript,typescript,c1e609;vite,vite,1c89d2;)
 
 ## Command
 
