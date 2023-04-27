@@ -24,6 +24,16 @@ const App = (): ReactElement => {
           Github
         </a>
       </span>
+      <span className='text-md fixed bottom-5 right-6 flex items-center justify-center gap-3'>
+        Made with ❤️ by{' '}
+        <a
+          target='_blank'
+          rel='noreferrer'
+          href='https://github.com/Sakoutecher'
+        >
+          @Sakoutecher
+        </a>
+      </span>
     </div>
   )
 }
