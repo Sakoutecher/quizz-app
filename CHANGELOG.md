@@ -5,6 +5,7 @@
 
 ### Added
 
+- 🔊 update logs [[48bd045](https://github.com/Sakoutecher/quizz-app/commit/48bd04588e4340377aa3305cc299da0699a464ef)]
 - ➕ framer-motion [[fa19890](https://github.com/Sakoutecher/quizz-app/commit/fa1989007f50b77ff3ac32f236c4b0024c2dc0e2)]
 - ✨ button to add to the scoreboard [[b89512f](https://github.com/Sakoutecher/quizz-app/commit/b89512fab77b2a24b1a132971fc21e331fcf9e5d)]
 - ✨ only on answer could be checked [[3405721](https://github.com/Sakoutecher/quizz-app/commit/34057212d8d986128be2330e82d2bf0a56d9895a)]
@@ -36,6 +37,7 @@
 
 ### Changed
 
+- 💬 change title [[2ee62a3](https://github.com/Sakoutecher/quizz-app/commit/2ee62a369beffbd66b5e9d4a1c538540488581d7)]
 - 🍱 add preview for the repo [[4733421](https://github.com/Sakoutecher/quizz-app/commit/47334217ca526cafa564a00c6f06f71128f2080a)]
 - 💄 position [[51b0b23](https://github.com/Sakoutecher/quizz-app/commit/51b0b23a1966b6dea752d328e9293eeec14c3bb1)]
 - 📱 repsonsive phone end of quizz [[b8acce1](https://github.com/Sakoutecher/quizz-app/commit/b8acce150cb69ae6b6eda83f81c42cb25b709d7f)]
