@@ -1,20 +1,36 @@
-import { FC } from 'react'
+//Librairies
+import { FC, useEffect, useState } from 'react'
 import uuid from 'react-uuid'
+
+//Icons
+import { IconSquareX } from '@tabler/icons-react'
 
 type ScoreBoardProps = {
   close: () => void
 }
 
-type ScoreType = Array<{ name: string; score: string }>
+interface Data {
+  name: string
+  score: string
+}
 
 export const ScoreBoard: FC<ScoreBoardProps> = ({ close }) => {
-  const scores: ScoreType = []
-  for (let i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(i) as string
-    const value = localStorage.getItem(key)
-    scores.push({ name: key, score: value as string })
+  const [data, setData] = useState<Data[]>([])
+
+  useEffect(() => {
+    const keys = Object.keys(localStorage)
+    const allData: Data[] = keys.map((key) => {
+      const value = localStorage.getItem(key)
+      return { name: key, score: value as string }
+    })
+    setData(allData)
+  }, [])
+
+  const removeScore = (name: string) => {
+    const filteredData = data.filter((item) => item.name !== name)
+    setData(filteredData)
+    localStorage.removeItem(name)
   }
-  console.log(scores)
 
   return (
     <div className='absolute w-screen h-screen bg-zinc-700/90 z-30 flex justify-center items-center'>
@@ -30,14 +46,22 @@ export const ScoreBoard: FC<ScoreBoardProps> = ({ close }) => {
           <div className='w-full h-0.5 bg-black'></div>
         </div>
         <div className='w-full flex flex-col items-start justify-center gap-2'>
-          {scores.map((score) => {
+          {data.map((score) => {
             return (
               <div
                 key={uuid()}
                 className='w-full h-10 bg-zinc-400 rounded flex items-center justify-between px-2'
               >
                 <span>{score.name}</span>
-                <span>{score.score}</span>
+                <div className='flex items-center justify-center gap-6'>
+                  <span>{score.score}</span>
+                  <IconSquareX
+                    onClick={() => removeScore(score.name)}
+                    size={24}
+                    color='#ef4444'
+                    style={{ cursor: 'pointer' }}
+                  />
+                </div>
               </div>
             )
           })}
