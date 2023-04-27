@@ -70,7 +70,7 @@ export const Quizz = () => {
 
   return (
     <>
-      <div className=' bg-zinc-300 rounded-md flex justify-between items-start flex-col p-6 relative'>
+      <div className=' bg-zinc-300 rounded-md flex justify-between items-start flex-col p-6 relative w-2/3'>
         {currentPage !== quizzData.length ? (
           <>
             <div className='mb-4'>
