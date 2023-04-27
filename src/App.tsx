@@ -9,10 +9,10 @@ import GitHubLogo from '../public/github-mark.svg'
 
 const App = (): ReactElement => {
   return (
-    <div className='w-full h-screen flex justify-center items-center flex-col bg-zinc-200 font-jetbrains'>
+    <div className='w-full h-screen flex justify-center items-center flex-col bg-zinc-200 font-jetbrains relative overflow-hidden'>
       <h1 className='mb-8 text-3xl underline'>QUIZZ APP</h1>
       <Quizz />
-      <span className='text-md fixed top-5 left-6 flex items-center justify-center gap-3 lg:bottom-5 lg:left-6'>
+      <span className='text-md absolute top-5 left-6 flex items-center justify-center gap-3 lg:bottom-5 lg:left-6'>
         Star the project on{' '}
         <a
           href='https://github.com/Sakoutecher/quizz-app'
@@ -24,7 +24,7 @@ const App = (): ReactElement => {
           Github
         </a>
       </span>
-      <span className='text-md fixed bottom-5 left-6 flex items-center justify-center gap-3 lg:bottom-5 lg:right-6'>
+      <span className='text-md absolute bottom-5 left-6 flex items-center justify-center gap-3 lg:bottom-5 lg:right-6'>
         Made with ❤️ by{' '}
         <a
           target='_blank'
